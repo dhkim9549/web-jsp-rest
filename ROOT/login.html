@@ -1,0 +1,97 @@
+<html>
+<head>
+<meta charset="UTF-8">
+<title>안심전환대출 신청예약</title>
+<style>
+body {
+  background-color: white;
+  font-family: '나눔고딕',NanumGothic,'돋움',Dotum,Helvetica,sans-serif;
+}
+
+.preference {
+  display: flex;
+  flex-flow: column;
+  width: 20em;
+  margin-bottom: 0.7em;
+}
+.jfk_textinput{border-radius:1px;border:1px solid #d9d9d9;border-top:1px solid #c0c0c0;font-size:21px;height:35px;padding:1px 8px}
+.jfk_textinput:focus{box-shadow:inset 0 1px 2px rgba(0,0,0,.3);border:1px solid #4d90fe;outline:none}
+.label_req{font-size:16px;line-height:25px;}
+
+.title_wrap{margin-bottom:23px;}
+.btn_login_wrap{margin-top:38px;}
+.btn_login {
+  margin-left:auto;margin-right:auto;display:block;width:300px;padding:13px 0 13px;border-radius:6px;
+  border:solid 1px rgba(0,0,0,.15);background-color:#0066cc;box-sizing:border-box;
+}
+.btn_login{padding:13px 0;border-radius:5.4px}
+.btn_text{font-size:20px;font-weight:700;line-height:24px;color:#fff}
+.btn_text{font-size:20px;line-height:24px;letter-spacing:-.5px}
+.flex1 {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  height: 95vh;
+}
+.flex2 {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  border: 1px solid red;
+  background-color: #0abab5;
+  padding: 30px 100px 60px 100px;
+}
+</style>
+<script>
+
+function doAction() {
+  var f = document.loginForm;
+  if(f.name.value.length < 2) {
+    alert("이름을 정확하게 입력하여 주십시오.");
+	return false;
+  }
+  if(f.mbno.value.length < 10) {
+    alert("휴대폰 번호를 정확하게 입력하여 주십시오.");
+	return false;
+  }
+  return true;
+}
+
+document.addEventListener("DOMContentLoaded", function(event) {
+  const mbnoElement = document.getElementById("mbno");
+  mbnoElement.addEventListener("input", function(event) {
+    mbnoElement.value = mbnoElement.value.replace(/[^0-9.]/g, '').replace(/(\..*)\./g, '$1');
+  });
+})
+
+</script>
+</head>
+<body>
+<div class="flex1">
+  <div class="flex2"> 
+    <div class="title_wrap">
+      <h1>안심전환대출 신청예약</h1>
+    </div>
+    <form name="loginForm" action="/safe-resv.jsp" method="POST" target="_top" onsubmit="return doAction();">
+      <div class="preference">
+        <label for="name" class="label_req">이름</label>
+        <input type="text" id="name" name="name" placeholder="" maxlength="20" size="20" class="jfk_textinput">
+      </div>
+
+      <div class="preference">
+        <label for="mbno" class="label_req">휴대폰번호</label>
+        <input type="text" id="mbno" name="mbno" placeholder="숫자만 입력" maxlength="11" size="20" class="jfk_textinput">
+      </div>
+
+      <div class="btn_login_wrap">
+        <button type="submit" class="btn_login" id="log.login">
+          <span class="btn_text">로그인</span>
+        </button>
+      </div>
+    </form>
+  </div>
+</div>
+</body>
+</html>
